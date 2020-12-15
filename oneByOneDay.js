@@ -48,8 +48,9 @@ function getMessage(url){
 }
 
 function log (data) {
-  fs.appendFileSync('src/miaosha/log.txt', `当前时间：${toTime()}`+'\r');
-  fs.appendFileSync('src/miaosha/log.txt', JSON.stringify(data)+'\r');
+  // fs.appendFileSync('log.txt', `当前时间：${toTime()}`+'\r');
+  // fs.appendFileSync('log.txt', JSON.stringify(data)+'\r');
+  console.log('data')
 }
 
 
