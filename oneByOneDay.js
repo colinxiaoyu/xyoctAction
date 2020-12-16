@@ -23,10 +23,13 @@ function getScore (mid) {
   getMessage(Url+mid);
   getMessage(teaUrl+mid);
   getMessage(signTeaUrl+mid);
+  //分享三次
+  getMessage(shareTeaUrl+mid);
+  getMessage(shareTeaUrl+mid);
   getMessage(shareTeaUrl+mid);
   getMessage(Url+mid);
   getMessage(guangTeaUrl+mid);
-  getMessage(applyTeaUrl+mid);
+  // getMessage(applyTeaUrl+mid);
 }
 
 getScore(USERCODE1);
