@@ -5,7 +5,9 @@ const USERCODE1 = process.env.USERCODE1;
 const USERCODE2 = process.env.USERCODE2;
 
 const Url = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=QianDao&memberid=`;// 签到
-const chouUrl = 'https://www.xyoct.com/choujiang0528/webserver/AjaxApi.aspx?Type=ChouJiang&memberID=';// 抽奖
+
+const chouUrl = 'https://www.xyoct.com/choujiang0528/webserver/AjaxApi.aspx?Type=ChouJiang&memberID=';// 积分抽奖
+const chouUrl2 = 'https://www.xyoct.com/hqczp622/webserver/AjaxApi.aspx?Type=ChouJiang&memberID=';// 大转盘抽奖
 
 
 const teaUrl = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=WanChengChaYuanRenWu&move=Free&mid=`;//领取茶叶
@@ -24,10 +26,14 @@ const guangTeaUrl = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=
 function getScore (mid) {
   // 签到
   getMessage(Url + mid);
-  // 抽奖 三次机会
+  // 积分抽奖 三次机会
   postMessage(chouUrl + mid);
   postMessage(chouUrl + mid);
   postMessage(chouUrl + mid);
+  // 大转盘抽奖 三册机会
+  postMessage(chouUrl2 + mid);
+  postMessage(chouUrl2 + mid);
+  postMessage(chouUrl2 + mid);
   // 茶叶相关
   getMessage(teaUrl + mid);
   getMessage(signTeaUrl + mid);
