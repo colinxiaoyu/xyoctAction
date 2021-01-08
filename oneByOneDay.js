@@ -5,6 +5,7 @@ const USERCODE1 = process.env.USERCODE1;
 const USERCODE2 = process.env.USERCODE2;
 
 const Url = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=QianDao&memberid=`;// 签到
+const dazhuanpanUrl = 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=HuoDongJiFen&eventid=6&score=5&memberid='; // 大转盘签到
 
 const chouUrl = 'https://www.xyoct.com/choujiang0528/webserver/AjaxApi.aspx?Type=ChouJiang&memberID=';// 积分抽奖
 const chouUrl2 = 'https://www.xyoct.com/hqczp622/webserver/AjaxApi.aspx?Type=ChouJiang&memberID=';// 大转盘抽奖
@@ -26,6 +27,8 @@ const guangTeaUrl = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=
 function getScore (mid) {
   // 签到
   getMessage(Url + mid);
+  // 大转盘签到
+  getMessage(dazhuanpanUrl + mid);
   // 积分抽奖 三次机会
   postMessage(chouUrl + mid);
   postMessage(chouUrl + mid);
