@@ -18,11 +18,11 @@ const shareTeaUrl = 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=
 const applyTeaUrl = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=ShiFei&mid=`; //施肥
 const guangTeaUrl = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=WanChengChaYuanRenWu&move=View&mid=`// 逛一逛
 
-const zanUR=`https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=DianZan`; // 点赞
-for(let i=45;i<0;i++){
-  getMessage(zanUR+`&eventid=${i}&memberid=`+USERCODE1);
-  getMessage(zanUR+`&eventid=${i}&memberid=`+USERCODE2);
-}
+// const zanUR=`https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=DianZan`; // 点赞
+// for(let i=45;i<0;i++){
+//   getMessage(zanUR+`&eventid=${i}&memberid=`+USERCODE1);
+//   getMessage(zanUR+`&eventid=${i}&memberid=`+USERCODE2);
+// }
 
 function getScore (mid) {
   // 签到
