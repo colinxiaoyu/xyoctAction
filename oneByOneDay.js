@@ -24,27 +24,41 @@ const guangTeaUrl = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=
 //   getMessage(zanUR+`&eventid=${i}&memberid=`+USERCODE2);
 // }
 
-function getScore (mid) {
+async function getScore  (mid) {
   // 签到
   getMessage(Url + mid);
+  await sleep(rand(3, 5) * 1000);
   // 大转盘签到
   getMessage(dazhuanpanUrl + mid);
+  await sleep(rand(3, 5) * 1000);
   // 积分抽奖 三次机会
   postMessage(chouUrl + mid);
+  await sleep(rand(3, 5) * 1000);
   postMessage(chouUrl + mid);
+  await sleep(rand(3, 5) * 1000);
   postMessage(chouUrl + mid);
+  await sleep(rand(3, 5) * 1000);
   // 大转盘抽奖 三册机会
   postMessage(chouUrl2 + mid);
+  await sleep(rand(3, 5) * 1000);
   postMessage(chouUrl2 + mid);
+  await sleep(rand(3, 5) * 1000);
   postMessage(chouUrl2 + mid);
+  await sleep(rand(3, 5) * 1000);
   // 茶叶相关
   getMessage(teaUrl + mid);
   getMessage(signTeaUrl + mid);
+  await sleep(rand(3, 5) * 1000);
   getMessage(shareTeaUrl + mid);//分享三次
+  await sleep(rand(3, 5) * 1000);
   getMessage(shareTeaUrl + mid);
+  await sleep(rand(3, 5) * 1000);
   getMessage(shareTeaUrl + mid);
+  await sleep(rand(3, 5) * 1000);
   getMessage(Url + mid);
+  await sleep(rand(3, 5) * 1000);
   getMessage(guangTeaUrl + mid);
+  await sleep(rand(3, 5) * 1000);
   // getMessage(applyTeaUrl+mid);
 }
 
@@ -78,20 +92,12 @@ function postMessage (url) {
   }).catch(e => console.log('error', e))
 }
 
-function log (data) {
-  // fs.appendFileSync('log.txt', `当前时间：${toTime()}`+'\r');
-  // fs.appendFileSync('log.txt', JSON.stringify(data)+'\r');
-  console.log('data')
+
+function sleep(time) {
+  console.log(`暂停${time}秒,稍后执行下面的程序!`);
+  return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-
-function toTime () {
-  const date = new Date();
-  const Y = date.getFullYear() + '-';
-  const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-  const D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
-  const h = date.getHours() + ':';
-  const m = date.getMinutes() + '   ';
-  const s = date.getMilliseconds();
-  return Y + M + D + h + m + s;
+function rand(min, max) {
+  return Math.random() * (max - min + 1) + min | 0; //特殊的技巧，|0可以强制转换为整数
 }
