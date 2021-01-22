@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const USERCODE1 = process.env.USERCODE1;
 const USERCODE2 = process.env.USERCODE2;
+const USERCODE3 = process.env.USERCODE3;
 
 const Url = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=QianDao&memberid=`;// 签到
 const dazhuanpanUrl = 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=HuoDongJiFen&eventid=6&score=5&memberid='; // 大转盘签到
@@ -18,7 +19,6 @@ const applyTeaUrl = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=
 const guangTeaUrl = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=WanChengChaYuanRenWu&move=View&mid=`// 逛一逛
 
 // const zanUR=`https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=DianZan`; // 点赞
-// 45
 // for(let i=45;i<0;i++){
 //   getMessage(zanUR+`&eventid=${i}&memberid=`+USERCODE1);
 //   getMessage(zanUR+`&eventid=${i}&memberid=`+USERCODE2);
@@ -50,6 +50,7 @@ function getScore (mid) {
 
 getScore(USERCODE1);
 getScore(USERCODE2);
+getScore(USERCODE3);
 
 function getMessage (url) {
   axios({
