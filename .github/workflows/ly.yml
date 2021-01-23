@@ -1,4 +1,4 @@
-name: octxy SignIn Everyday
+name: ly SignIn Everyday
 
 
 on:
@@ -19,10 +19,7 @@ jobs:
       with:
         node-version: 10.x
     # npm install
-    - name: "运行 【签到 和 茶叶签到等】"
-      env:
-        USERCODE1: ${{ secrets.USERCODE1 }}
-        USERCODE2: ${{ secrets.USERCODE2 }}
+    - name: "运行 【绿源 】"
       run: |
         npm install
         node ly.js
