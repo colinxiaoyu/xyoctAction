@@ -24,41 +24,27 @@ const guangTeaUrl = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=
 //   getMessage(zanUR+`&eventid=${i}&memberid=`+USERCODE2);
 // }
 
-async function getScore  (mid) {
+ function getScore  (mid) {
   // 签到
   getMessage(Url + mid);
-  await sleep(rand(3, 5) * 1000);
   // 大转盘签到
   getMessage(dazhuanpanUrl + mid);
-  await sleep(rand(3, 5) * 1000);
   // 积分抽奖 三次机会
   postMessage(chouUrl + mid);
-  await sleep(rand(3, 5) * 1000);
   postMessage(chouUrl + mid);
-  await sleep(rand(3, 5) * 1000);
   postMessage(chouUrl + mid);
-  await sleep(rand(3, 5) * 1000);
   // 大转盘抽奖 三册机会
   postMessage(chouUrl2 + mid);
-  await sleep(rand(3, 5) * 1000);
   postMessage(chouUrl2 + mid);
-  await sleep(rand(3, 5) * 1000);
   postMessage(chouUrl2 + mid);
-  await sleep(rand(3, 5) * 1000);
   // 茶叶相关
   getMessage(teaUrl + mid);
   getMessage(signTeaUrl + mid);
-  await sleep(rand(3, 5) * 1000);
   getMessage(shareTeaUrl + mid);//分享三次
-  await sleep(rand(3, 5) * 1000);
   getMessage(shareTeaUrl + mid);
-  await sleep(rand(3, 5) * 1000);
   getMessage(shareTeaUrl + mid);
-  await sleep(rand(3, 5) * 1000);
   getMessage(Url + mid);
-  await sleep(rand(3, 5) * 1000);
   getMessage(guangTeaUrl + mid);
-  await sleep(rand(3, 5) * 1000);
   // getMessage(applyTeaUrl+mid);
 }
 
@@ -92,12 +78,3 @@ function postMessage (url) {
   }).catch(e => console.log('error', e))
 }
 
-
-function sleep(time) {
-  console.log(`暂停${time}秒,稍后执行下面的程序!`);
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
-
-function rand(min, max) {
-  return Math.random() * (max - min + 1) + min | 0; //特殊的技巧，|0可以强制转换为整数
-}
