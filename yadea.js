@@ -26,7 +26,7 @@ function runExec (cmdStr) {
 // 签到
 function qd (arr) {
 	arr.map(async item => {
-		// await sleep(rand(3, 5) * 1000);
+		await sleep(rand(3, 5) * 1000);
 		runExec(item).then(it => {
 			const res =JSON.parse(it)
 			if(res.errcode==="0"){
@@ -35,7 +35,7 @@ function qd (arr) {
 				dd('yadea 签到token失效，请重新获取token')
 			}
 		}).catch(err => {
-
+			dd('yadea 签到token失效，请重新获取token')
 		})
 	})
 }
@@ -43,7 +43,7 @@ function qd (arr) {
 // 获取用户信息
 function getInfo (arr) {
 	arr.map(async item => {
-		// await sleep(rand(3, 5) * 1000);
+		await sleep(rand(3, 5) * 1000);
 		runExec(item).then(it => {
 			const res =JSON.parse(it)
 			if(res.errcode==="0"){
