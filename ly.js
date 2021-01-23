@@ -48,17 +48,6 @@ function rand (min, max) {
   return Math.random() * (max - min + 1) + min | 0; //特殊的技巧，|0可以强制转换为整数
 }
 
-function dd (str) {
-  let url = `curl 'https://oapi.dingtalk.com/robot/send?access_token=f1143441ca8cc5ee057beb4c2c85e5c7ed76656d42fb2db1916bdddf73672344' \
-   -H 'Content-Type: application/json' \
-   -d '{"msgtype": "text","text": {"content": "绿源电动车:${str}"}}'`;
-  runExec(url).then((std) => {
-    console.log(std);
-  }).catch(err => {
-    console.log(err);
-  })
-}
-
 // 签到
 function qd (arr) {
   arr.map(async item => {

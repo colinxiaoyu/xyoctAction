@@ -25,4 +25,4 @@ jobs:
         USERCODE2: ${{ secrets.USERCODE2 }}
       run: |
         npm install
-        node oneByOneDay.js
+        node ly.js
