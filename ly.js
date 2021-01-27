@@ -1,5 +1,7 @@
 // https://custom.luyuan.cn/custom/wechat/usercenter.html?code=061x8AFa1WFvnA0vsIGa102mSd3x8AFl&state=STATE&usercode=20210122093525742EVYB54Y
 // 每天签到
+import {dd} from "./dd";
+
 let qdArr = [
   `curl -H 'Host: custom.luyuan.cn' -H 'Accept: */*' -H 'X-Requested-With: XMLHttpRequest' -H 'Accept-Language: zh-cn' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: http://custom.luyuan.cn' -H 'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.18(0x17001231) NetType/WIFI Language/zh_CN' -H 'Referer: http://custom.luyuan.cn/custom/wechat/integral_index.html?usercode=20210122093525742EVYB54Y&timestamp=${new Date().getTime()}' -H 'Cookie: UM_distinctid=1764bb00e662c3-047fdd2377a0e98-5260777a-4a574-1764bb00e67118' --data-binary "usercode=20210122093525742EVYB54Y" --compressed 'http://custom.luyuan.cn/custom/signin/add'`,
 ];
@@ -80,16 +82,6 @@ function xx (arr) {
 
 }
 
-function dd (str) {
-  let url = `curl 'https://oapi.dingtalk.com/robot/send?access_token=75d5d35ec52975b87baf3abf889fd0c83d7e20fb1bc1c2e118ee0fa7face8163' \
-   -H 'Content-Type: application/json' \
-   -d '{"msgtype": "text","text": {"content": "测试:${str}"}}'`;
-  runExec(url).then((std) => {
-    console.log(std);
-  }).catch(err => {
-    console.log(err);
-  })
-}
 
 // 社区内容
 function sh () {
