@@ -67,17 +67,28 @@ function xx (arr) {
   arr.map(async item => {
     runExec(url(item)).then(data => {
       const a = JSON.parse(data);
-      console.log(a);
-      if (a.ok) {
+
         const integral = a['userprofile']['integral'];
         const cellphone = a['userprofile']['cellphone'];
-        console.log(`${cellphone}的积分为: ${integral} ,快去换东西去吧`);
-      }
+        if(integral>10000){
+          dd(`${cellphone}的积分为: ${integral} ,快去换东西去吧`);
+        }
     }).catch(err => {
       console.log(err);
     })
   });
 
+}
+
+function dd (str) {
+  let url = `curl 'https://oapi.dingtalk.com/robot/send?access_token=75d5d35ec52975b87baf3abf889fd0c83d7e20fb1bc1c2e118ee0fa7face8163' \
+   -H 'Content-Type: application/json' \
+   -d '{"msgtype": "text","text": {"content": "测试:${str}"}}'`;
+  runExec(url).then((std) => {
+    console.log(std);
+  }).catch(err => {
+    console.log(err);
+  })
 }
 
 // 社区内容
@@ -237,4 +248,3 @@ const ab = async () => {
 
 
 ab()
-
