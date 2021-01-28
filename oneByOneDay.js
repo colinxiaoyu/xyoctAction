@@ -48,8 +48,8 @@ const guangTeaUrl = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=
   // getMessage(applyTeaUrl+mid);
 }
 
-// getScore(USERCODE1);
-// getScore(USERCODE2);
+getScore(USERCODE1);
+getScore(USERCODE2);
 getScore(USERCODE3);
 
 function getMessage (url) {

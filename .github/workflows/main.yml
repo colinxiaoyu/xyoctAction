@@ -2,6 +2,7 @@ name: octxy SignIn Everyday
 
 
 on:
+  push:
   gollum:
   schedule:
       - cron: "0 3 * * *"
@@ -22,6 +23,7 @@ jobs:
       env:
         USERCODE1: ${{ secrets.USERCODE1 }}
         USERCODE2: ${{ secrets.USERCODE2 }}
+        USERCODE3: ${{ secrets.USERCODE3 }}
       run: |
         npm install
         node oneByOneDay.js
