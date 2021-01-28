@@ -58,13 +58,10 @@ function getMessage (url) {
     method: 'get',
     userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E217 MicroMessenger/6.8.0(0x16080000) NetType/WIFI Language/en Branch/Br_trunk MiniProgramEnv/Mac',
   }).then(res => {
-    console.log(res.data)
     if (res.data.State === -1) {
-      log(res.data);
     } else {
-      log(res.data);
     }
-  })
+  }).catch(e => console.log('error', e))
 }
 
 function postMessage (url) {
@@ -74,7 +71,6 @@ function postMessage (url) {
     userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E217 MicroMessenger/6.8.0(0x16080000) NetType/WIFI Language/en Branch/Br_trunk MiniProgramEnv/Mac',
     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
   }).then(res => {
-    console.log('responseData', res.data)
   }).catch(e => console.log('error', e))
 }
 

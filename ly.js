@@ -1,5 +1,7 @@
 // https://custom.luyuan.cn/custom/wechat/usercenter.html?code=061x8AFa1WFvnA0vsIGa102mSd3x8AFl&state=STATE&usercode=20210122093525742EVYB54Y
 // 每天签到
+import {dd} from "./dd";
+
 let qdArr = [
   `curl -H 'Host: custom.luyuan.cn' -H 'Accept: */*' -H 'X-Requested-With: XMLHttpRequest' -H 'Accept-Language: zh-cn' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: http://custom.luyuan.cn' -H 'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.18(0x17001231) NetType/WIFI Language/zh_CN' -H 'Referer: http://custom.luyuan.cn/custom/wechat/integral_index.html?usercode=20210122093525742EVYB54Y&timestamp=${new Date().getTime()}' -H 'Cookie: UM_distinctid=1764bb00e662c3-047fdd2377a0e98-5260777a-4a574-1764bb00e67118' --data-binary "usercode=20210122093525742EVYB54Y" --compressed 'http://custom.luyuan.cn/custom/signin/add'`,
 ];
@@ -67,18 +69,19 @@ function xx (arr) {
   arr.map(async item => {
     runExec(url(item)).then(data => {
       const a = JSON.parse(data);
-      console.log(a);
-      if (a.ok) {
+
         const integral = a['userprofile']['integral'];
         const cellphone = a['userprofile']['cellphone'];
-        console.log(`${cellphone}的积分为: ${integral} ,快去换东西去吧`);
-      }
+        if(integral>10000){
+          dd(`${cellphone}的积分为: ${integral} ,快去换东西去吧`);
+        }
     }).catch(err => {
       console.log(err);
     })
   });
 
 }
+
 
 // 社区内容
 function sh () {
@@ -237,4 +240,3 @@ const ab = async () => {
 
 
 ab()
-
