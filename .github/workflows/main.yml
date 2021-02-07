@@ -4,7 +4,7 @@ name: octxy SignIn Everyday
 on:
   gollum:
   schedule:
-      - cron: "0 3 * * *"
+      - cron: "0 11 * * *"
 
 jobs:
   build:
