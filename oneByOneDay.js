@@ -18,6 +18,8 @@ const shareTeaUrl = 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=
 const applyTeaUrl = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=ShiFei&mid=`; //施肥
 const guangTeaUrl = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=WanChengChaYuanRenWu&move=View&mid=`// 逛一逛
 
+const birthRight = 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=ShengRiTeQuan&memberid=104082'// 生日权益
+
 // const zanUR=`https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=DianZan`; // 点赞
 // for(let i=45;i<0;i++){
 //   getMessage(zanUR+`&eventid=${i}&memberid=`+USERCODE1);
