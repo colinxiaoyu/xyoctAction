@@ -4,6 +4,7 @@ const fs = require('fs');
 const USERCODE1 = process.env.USERCODE1;
 const USERCODE2 = process.env.USERCODE2;
 const USERCODE3 = process.env.USERCODE3;
+const USERCODE4 = process.env.USERCODE4;
 
 const Url = `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=QianDao&memberid=`;// 签到
 const dazhuanpanUrl = 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=HuoDongJiFen&eventid=6&score=5&memberid='; // 大转盘签到
@@ -53,6 +54,7 @@ const birthRight = 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=S
 getScore(USERCODE1);
 getScore(USERCODE2);
 getScore(USERCODE3);
+getScore(USERCODE4);
 
 function getMessage (url) {
   axios({
