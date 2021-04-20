@@ -40,14 +40,13 @@ const birthRight = 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=S
   postMessage(chouUrl2 + mid);
   postMessage(chouUrl2 + mid);
   postMessage(chouUrl2 + mid);
-  // 茶叶相关
-  getMessage(teaUrl + mid);
-  getMessage(signTeaUrl + mid);
-  getMessage(shareTeaUrl + mid);//分享三次
-  getMessage(shareTeaUrl + mid);
-  getMessage(shareTeaUrl + mid);
-  getMessage(Url + mid);
-  getMessage(guangTeaUrl + mid);
+  // 茶叶相关  活动已取消
+  // getMessage(teaUrl + mid);
+  // getMessage(signTeaUrl + mid);
+  // getMessage(shareTeaUrl + mid);//分享三次
+  // getMessage(shareTeaUrl + mid);
+  // getMessage(shareTeaUrl + mid);
+  // getMessage(guangTeaUrl + mid);
   // getMessage(applyTeaUrl+mid);
 }
 
