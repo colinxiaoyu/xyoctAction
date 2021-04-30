@@ -25,6 +25,7 @@ jobs:
         USERCODE2: ${{ secrets.USERCODE2 }}
         USERCODE3: ${{ secrets.USERCODE3 }}
         USERCODE4: ${{ secrets.USERCODE4 }}
+        USERCODE5: ${{ secrets.USERCODE5 }}
       run: |
         npm install
         node oneByOneDay.js
