@@ -1,0 +1,35 @@
+{
+	"XinXi": "OK",
+	"AllowSign": 1,
+	"memberInfo": [{
+		"MemberID": "100689",
+		"MemberType": "Owner",
+		"RealName": "宋芳",
+		"IDNumber": "420606198810314024",
+		"Phone": "16601137946",
+		"IDBirth": "10/31",
+		"TotalScore": "4547",
+		"CostScore": "1758",
+		"AddTime": "2020/5/10 16:09:45",
+		"RegistDate": "2020/5/10",
+		"SignNum": "323",
+		"MemberLevel": "Diamonds",
+		"Address": ""
+	}, {
+		"MemberID": "114133",
+		"MemberType": "Fans",
+		"RealName": "--",
+		"IDNumber": "--",
+		"Phone": "18519353530",
+		"IDBirth": "",
+		"TotalScore": "52",
+		"CostScore": "27",
+		"AddTime": "2021/4/22 16:31:31",
+		"RegistDate": "",
+		"SignNum": "5",
+		"MemberLevel": "",
+		"Address": ""
+	}],
+	"encryptData": "f5773VLCgHk__",
+	"AllowBirth": 0
+}

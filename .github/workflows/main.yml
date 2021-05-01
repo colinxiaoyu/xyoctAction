@@ -29,5 +29,4 @@ jobs:
       run: |
         npm install
         node oneByOneDay.js
-        node yadea.js
-        node jd_sign.js
+        node oct51Activity.js
