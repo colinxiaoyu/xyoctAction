@@ -29,4 +29,3 @@ jobs:
       run: |
         npm install
         node oneByOneDay.js
-        node oct51Activity.js
