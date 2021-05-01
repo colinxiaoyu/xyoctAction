@@ -86,13 +86,13 @@ function hb() {
 
 
 async function doAll(){
-	sign();// 运行签到
-	await sleep(rand(3, 5) * 1000);
-	Array.from({length:3}).map(()=>{
-		choujiang(); // 运行抽奖
-	});
-	await sleep(rand(3, 5) * 1000);
-	big();
+	// await sign();// 运行签到
+	// await sleep(rand(3, 5) * 1000);
+	// Array.from({length:3}).map(()=>{
+	// 	choujiang(); // 运行抽奖
+	// });
+	// await sleep(rand(3, 5) * 1000);
+	// big();
 	hb();
 }
 
