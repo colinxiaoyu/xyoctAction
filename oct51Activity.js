@@ -57,8 +57,14 @@ function choujiang () {
 	})
 }
 
-// sign();
-Array.from({length:3}).map(()=>{
 
-});
-// choujiang()
+function doAll(){
+	sign();// 运行签到
+	Array.from({length:3}).map(()=>{
+		choujiang(); // 运行抽奖
+	});
+}
+
+doAll();
+
+
