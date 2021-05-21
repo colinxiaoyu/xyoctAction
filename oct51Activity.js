@@ -7,95 +7,70 @@ function runExec(cmdStr) {
 				console.log('err' + stderr);
 				reject();
 			} else {
-				// console.log(stdout);
 				resolve(stdout);
 			}
 		});
 	});
 }
 
-function sleep(time) {
-	return new Promise((resolve) => setTimeout(resolve, time));
+function randSleep() {
+  return new Promise((resolve) => setTimeout(resolve, Math.random()*1000*100));
 }
 
-function rand(min, max) {
-	return Math.random() * (max - min + 1) + min | 0; //特殊的技巧，|0可以强制转换为整数
+function randoTask() {
+  const r = Math.floor(Math.random()*10);
+  return r%2;
 }
 
+const dianZanUrl =(mid,vid)=> `curl -H 'Host: gaowei.juzhen02.com' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'X-Requested-With: XMLHttpRequest' -H 'Accept-Language: zh-cn' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://gaowei.juzhen02.com' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16) AppleWebKit/605.1.15 (KHTML, like Gecko) MicroMessenger/6.8.0(0x16080000) MacWechat/3.0.3(0x13000309) MiniProgramEnv/Mac MiniProgram' -H 'Referer: https://gaowei.juzhen02.com/2021/plp517/index.html?encryptData=IRaAF1wIjG8__&t=${Date.now()}' -H 'Cookie: ASP.NET_SessionId=123123' --data-binary "Type=VoteFor&memberID=${mid}&vid=${vid}" --compressed 'https://gaowei.juzhen02.com/2021/plp517/webserver/AjaxApi.aspx'`
 
-// 100689
-// 114133
-// const midArr = [100689,114133,104082];
 
-const {USERCODE1, USERCODE2, USERCODE3, USERCODE4, USERCODE5} = process.env;
 
-const midArr = [USERCODE1, USERCODE2, USERCODE3, USERCODE4, USERCODE5];
+function dianZan (mid,vid=37) {
+  runExec(dianZanUrl(mid,vid)).then(it => {
+    getCurrentTime()
+    console.log('ID：', mid, '点赞结果：', it);
+  }).catch(err => {
+    console.log(err);
+  })
+}
 
-const signUrl = (mid) => `curl -H 'Host: hongbao.juzhen.co' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'X-Requested-With: XMLHttpRequest' -H 'Accept-Language: zh-cn' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://hongbao.juzhen.co' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) MicroMessenger/6.8.0(0x16080000) MacWechat/3.0.2(0x13000212) MiniProgramEnv/Mac MiniProgram' -H 'Referer: https://hongbao.juzhen.co/2021/qch0426/index.html' -H 'Cookie: ASP.NET_SessionId=' --data-binary "Type=sign&memid=${mid}" --compressed 'https://hongbao.juzhen.co/2021/qch0426/WebService/Ajax.aspx'`
-const choujiangUrl = (mid) => `curl -H 'Host: hongbao.juzhen.co' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'X-Requested-With: XMLHttpRequest' -H 'Accept-Language: zh-cn' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://hongbao.juzhen.co' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) MicroMessenger/6.8.0(0x16080000) MacWechat/3.0.2(0x13000212) MiniProgramEnv/Mac MiniProgram' -H 'Referer: https://hongbao.juzhen.co/2021/qch0426/index.html' -H 'Cookie: ASP.NET_SessionId=' --data-binary "Type=SendSeeds&memid=${mid}&game=lhj&iswin=2" --compressed 'https://hongbao.juzhen.co/2021/qch0426/WebService/Ajax.aspx'`
-const bigUrl = (mid) => `curl -H 'Host: hongbao.juzhen.co' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'X-Requested-With: XMLHttpRequest' -H 'Accept-Language: zh-cn' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://hongbao.juzhen.co' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) MicroMessenger/6.8.0(0x16080000) MacWechat/3.0.2(0x13000212) MiniProgramEnv/Mac MiniProgram' -H 'Referer: https://hongbao.juzhen.co/2021/qch0426/index.html' -H 'Cookie: ASP.NET_SessionId=' --data-binary "Type=SendSeeds&memid=${mid}&game=dfw&iswin=20" --compressed 'https://hongbao.juzhen.co/2021/qch0426/WebService/Ajax.aspx'`
-const hbUrl = (mid) => `curl -H 'Host: hongbao.juzhen.co' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'X-Requested-With: XMLHttpRequest' -H 'Accept-Language: zh-cn' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://hongbao.juzhen.co' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) MicroMessenger/6.8.0(0x16080000) MacWechat/3.0.2(0x13000212) MiniProgramEnv/Mac MiniProgram' -H 'Referer: https://hongbao.juzhen.co/2021/qch0426/index.html' -H 'Cookie: ASP.NET_SessionId=' --data-binary "Type=SendSeeds&memid=${mid}&game=rain&iswin=20" --compressed 'https://hongbao.juzhen.co/2021/qch0426/WebService/Ajax.aspx'`
+function getCurrentTime () {
+  const b =new Date()
+  const time  = b.getFullYear()+'/'+b.getMonth()+'/'+b.getDate()+'  '+b.getHours()+':'+b.getMinutes()+':'+b.getSeconds();
+  console.log('当前时间：',time)
+}
 
-// 侨城会 51 签到
-function sign() {
-	midArr.map(async (item) => {
-		await sleep(rand(3, 5) * 1000);
-		runExec(signUrl(item)).then(it => {
-			console.log('签到ID：', item, '签到结果：', it);
-		}).catch(err => {
-			console.log(err);
-		})
+function randomNum (min=100689, max=116133) {
+	let r = Math.random()*(max-min);
+	r = Math.floor(r)+min;
+	return r
+}
+
+// 一次任务  点赞 num 次
+function generateIds (num=1) {
+	const ids = [];
+	Array.from({length:num}).map(()=>{
+		ids.push(randomNum())
 	})
+	return ids;
 }
 
-// 侨城会 51 抽奖
-function choujiang() {
-	midArr.map(async (item) => {
-		await sleep(rand(3, 5) * 1000);
-		runExec(choujiangUrl(item)).then(it => {
-			console.log('抽奖ID：', item, '签到结果：', it);
-		}).catch(err => {
-			console.log(err);
-		})
-	})
+// 任务
+function task () {
+	console.log('task');
+	if(randoTask()){
+    const ids = generateIds();
+    ids.forEach(async item=>{
+      await  randSleep();
+      getCurrentTime();
+      await dianZan(item)
+    })
+	}
+
+
 }
 
-// 大富翁活动
-function big() {
-	midArr.map(async (item) => {
-		await sleep(rand(3, 5) * 1000);
-		runExec(bigUrl(item)).then(it => {
-			console.log('大富翁ID：', item, '签到结果：', it);
-		}).catch(err => {
-			console.log(err);
-		})
-	})
-}
-
-// 红包雨 活动 hbUrl
-function hb() {
-	midArr.map(async (item) => {
-		await sleep(rand(3, 5) * 1000);
-		runExec(hbUrl(item)).then(it => {
-			console.log('红包雨ID：', item, '签到结果：', it);
-		}).catch(err => {
-			console.log(err);
-		})
-	})
-}
-
-
-async function doAll() {
-	await sign();// 运行签到
-	await sleep(rand(3, 5) * 1000);
-	Array.from({length: 3}).map(() => {
-		choujiang(); // 运行抽奖
-	});
-	await sleep(rand(3, 5) * 1000);
-	big();
-	hb();
-}
-
-doAll();
+task()
 
 
