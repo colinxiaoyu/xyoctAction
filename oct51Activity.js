@@ -41,7 +41,7 @@ function getCurrentTime () {
   console.log('当前时间：',time)
 }
 
-function randomNum (min=100689, max=116133) {
+function randomNum (min=100189, max=116133) {
 	let r = Math.random()*(max-min);
 	r = Math.floor(r)+min;
 	return r
