@@ -25,7 +25,9 @@ function randoTask() {
 const dianZanUrl =(mid,vid)=> `curl -H 'Host: gaowei.juzhen02.com' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'X-Requested-With: XMLHttpRequest' -H 'Accept-Language: zh-cn' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://gaowei.juzhen02.com' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16) AppleWebKit/605.1.15 (KHTML, like Gecko) MicroMessenger/6.8.0(0x16080000) MacWechat/3.0.3(0x13000309) MiniProgramEnv/Mac MiniProgram' -H 'Referer: https://gaowei.juzhen02.com/2021/plp517/index.html?encryptData=IRaAF1wIjG8__&t=${Date.now()}' -H 'Cookie: ASP.NET_SessionId=123123' --data-binary "Type=VoteFor&memberID=${mid}&vid=${vid}" --compressed 'https://gaowei.juzhen02.com/2021/plp517/webserver/AjaxApi.aspx'`
 
 
-
+function getId() {
+	return [37,216]
+}
 function dianZan (mid,vid=37) {
   runExec(dianZanUrl(mid,vid)).then(it => {
     getCurrentTime()
@@ -60,11 +62,14 @@ function generateIds (num=1) {
 function task () {
 	console.log('task');
 	if(randoTask()){
-    const ids = generateIds();
+    const ids = generateIds(1);
     ids.forEach(async item=>{
       await  randSleep();
       getCurrentTime();
-      await dianZan(item)
+			getId().map( vid=>{
+				 dianZan(item,vid)
+			})
+
     })
 	}
 
@@ -73,4 +78,11 @@ function task () {
 
 task()
 
+
+
+
+
+
+
+//
 
