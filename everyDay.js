@@ -68,9 +68,7 @@ const birthRightUrl = (mid) => `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi
 const jifenyuUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/jjb604/index.html?encryptData=_&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=TiJiaoChengJi&memberID=${mid}&Score=30" --compressed 'https://qch.xyoct.com/jjb604/webserver/AjaxApi.aspx'`
 
 function getIds () {
-  // return [USERCODE1, USERCODE2, USERCODE3, USERCODE4, USERCODE5]
-  return [104088]
-
+  return [USERCODE1, USERCODE2, USERCODE3, USERCODE4, USERCODE5]
 }
 
 // 签到
