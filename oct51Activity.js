@@ -14,12 +14,13 @@ function runExec(cmdStr) {
 }
 
 function randSleep() {
-  return new Promise((resolve) => setTimeout(resolve, Math.random()*1000*100));
+  return new Promise((resolve) => setTimeout(resolve, Math.random()*100));
 }
 
 function randoTask() {
   const r = Math.floor(Math.random()*10);
-  return r%2;
+  // return r%2;
+  return true;
 }
 
 const dianZanUrl =(mid,vid)=> `curl -H 'Host: gaowei.juzhen02.com' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'X-Requested-With: XMLHttpRequest' -H 'Accept-Language: zh-cn' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://gaowei.juzhen02.com' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16) AppleWebKit/605.1.15 (KHTML, like Gecko) MicroMessenger/6.8.0(0x16080000) MacWechat/3.0.3(0x13000309) MiniProgramEnv/Mac MiniProgram' -H 'Referer: https://gaowei.juzhen02.com/2021/plp517/index.html?encryptData=IRaAF1wIjG8__&t=${Date.now()}' -H 'Cookie: ASP.NET_SessionId=123123' --data-binary "Type=VoteFor&memberID=${mid}&vid=${vid}" --compressed 'https://gaowei.juzhen02.com/2021/plp517/webserver/AjaxApi.aspx'`
@@ -62,9 +63,9 @@ function generateIds (num=1) {
 function task () {
 	console.log('task');
 	if(randoTask()){
-    const ids = generateIds(1);
+    const ids = generateIds(30);
     ids.forEach(async item=>{
-      await  randSleep();
+      // await  randSleep();
       getCurrentTime();
 			getId().map( vid=>{
 				 dianZan(item,vid)

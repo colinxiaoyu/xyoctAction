@@ -28,4 +28,4 @@ jobs:
         USERCODE5: ${{ secrets.USERCODE5 }}
       run: |
         npm install
-        node oneByOneDay.js
+        node everyDay.js
