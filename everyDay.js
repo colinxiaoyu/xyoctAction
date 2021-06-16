@@ -58,14 +58,19 @@ const USERCODE3 = process.env.USERCODE3;
 const USERCODE4 = process.env.USERCODE4;
 const USERCODE5 = process.env.USERCODE5; //114133  副作用号
 
+// 签到
 const signUrl = (mid, ua) => `curl -H 'Host: www.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/179/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=QianDao&memberid=${mid}'`
+// 大转盘签到
 const dazhuanpanUrl = (mid, ua) => `curl -H 'Host: www.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/179/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=HuoDongJiFen&memberid=${mid}&eventid=6&score=5'`
+// 连连看 抽奖
+const lianliankanUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/llk608/index.html?encryptData=IRaAF1wIjG8__&t=1623821126331' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=ChouJiang&memberID=${mid}" --compressed 'https://qch.xyoct.com/llk608/webserver/AjaxApi.aspx'`
+// 积分雨活动
+const jifenyuUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/jjb604/index.html?encryptData=_&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=TiJiaoChengJi&memberID=${mid}&Score=30" --compressed 'https://qch.xyoct.com/jjb604/webserver/AjaxApi.aspx'`
 
 const chouUrl = (mid, ua) => `https://www.xyoct.com/choujiang0528/webserver/AjaxApi.aspx?Type=ChouJiang&memberID=${mid}`;// 积分抽奖
 const chouUrl2 = (mid, ua) => `https://www.xyoct.com/hqczp622/webserver/AjaxApi.aspx?Type=ChouJiang&memberID=${mid}`;// 大转盘抽奖
 const birthRightUrl = (mid) => `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=ShengRiTeQuan&memberid=${mid}`// 生日权益
 
-const jifenyuUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/jjb604/index.html?encryptData=_&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=TiJiaoChengJi&memberID=${mid}&Score=30" --compressed 'https://qch.xyoct.com/jjb604/webserver/AjaxApi.aspx'`
 
 function getIds () {
   return [USERCODE1, USERCODE2, USERCODE3, USERCODE4, USERCODE5]
@@ -93,7 +98,7 @@ function dazhuanpan (mid, ua) {
 
 // 积分抽奖
 function chou (mid, ua) {
-  runExec(chouUrl(mid)).then(it => {
+  runExec(chouUrl(mid, ua)).then(it => {
     getCurrentTime()
     console.log('ID：', mid, '积分抽奖结果：', it);
   }).catch(err => {
@@ -103,7 +108,7 @@ function chou (mid, ua) {
 
 // 大转盘抽奖
 function chou2 (mid, ua) {
-  runExec(chouUrl2(mid)).then(it => {
+  runExec(chouUrl2(mid, ua)).then(it => {
     getCurrentTime()
     console.log('ID：', mid, '大转盘抽奖结果：', it);
   }).catch(err => {
@@ -121,6 +126,17 @@ function jifenyu (mid, ua) {
   })
 }
 
+function lianliankan (mid, ua) {
+  runExec(lianliankanUrl(mid, ua)).then(it => {
+    getCurrentTime()
+    console.log('ID：', mid, '积分雨抽奖结果：', it);
+  }).catch(err => {
+    console.log(err);
+  })
+}
+
+
+
 
 
 // 任务
@@ -136,22 +152,32 @@ async function task () {
     await chou2(mid, ua); // 大转盘抽奖
     await randSleep();
 
-    await chou2(mid, ua); // 大转盘抽奖
+    await chou2(mid, ua);
     await randSleep();
 
-    await chou2(mid, ua); // 大转盘抽奖
-    await randSleep();
-
-    await chou(mid, ua); // 积分抽奖
+    await chou2(mid, ua);
     await randSleep();
 
     await chou(mid, ua); // 积分抽奖
     await randSleep();
 
-    await chou(mid, ua); // 积分抽奖
+    await chou(mid, ua);
     await randSleep();
 
-    await jifenyu(mid, ua)
+    await chou(mid, ua);
+    await randSleep();
+
+    await jifenyu(mid, ua) // 积分雨
+
+    await lianliankan(mid, ua) // 连连看
+    await randSleep();
+
+    await lianliankan(mid, ua)
+    await randSleep();
+
+    await lianliankan(mid, ua)
+    await randSleep();
+
 
   })
 }
