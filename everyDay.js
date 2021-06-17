@@ -63,12 +63,13 @@ const signUrl = (mid, ua) => `curl -H 'Host: www.xyoct.com' -H 'Content-Type: ap
 // 大转盘签到
 const dazhuanpanUrl = (mid, ua) => `curl -H 'Host: www.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/179/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=HuoDongJiFen&memberid=${mid}&eventid=6&score=5'`
 // 连连看 抽奖
-const lianliankanUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/llk608/index.html?encryptData=IRaAF1wIjG8__&t=1623821126331' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=ChouJiang&memberID=${mid}" --compressed 'https://qch.xyoct.com/llk608/webserver/AjaxApi.aspx'`
+const lianliankanUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/llk608/index.html?encryptData=_ __&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=ChouJiang&memberID=${mid}" --compressed 'https://qch.xyoct.com/llk608/webserver/AjaxApi.aspx'`
 // 积分雨活动
 const jifenyuUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/jjb604/index.html?encryptData=_&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=TiJiaoChengJi&memberID=${mid}&Score=30" --compressed 'https://qch.xyoct.com/jjb604/webserver/AjaxApi.aspx'`
 
+// 
 const chouUrl = (mid, ua) => `https://www.xyoct.com/choujiang0528/webserver/AjaxApi.aspx?Type=ChouJiang&memberID=${mid}`;// 积分抽奖
-const chouUrl2 = (mid, ua) => `https://www.xyoct.com/hqczp622/webserver/AjaxApi.aspx?Type=ChouJiang&memberID=${mid}`;// 大转盘抽奖
+const chouUrl2 = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/hqczp622/index.html?encryptData=___&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=ChouJiang&memberID=${mid}" --compressed 'https://qch.xyoct.com/hqczp622/webserver/AjaxApi.aspx'`;// 大转盘抽奖
 const birthRightUrl = (mid) => `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=ShengRiTeQuan&memberid=${mid}`// 生日权益
 
 
@@ -126,10 +127,11 @@ function jifenyu (mid, ua) {
   })
 }
 
+// 连连看 活动
 function lianliankan (mid, ua) {
   runExec(lianliankanUrl(mid, ua)).then(it => {
     getCurrentTime()
-    console.log('ID：', mid, '积分雨抽奖结果：', it);
+    console.log('ID：', mid, '连连看抽奖结果：', it);
   }).catch(err => {
     console.log(err);
   })
