@@ -168,7 +168,7 @@ function getIds () {
 async function task () {
   getIds().map(async mid => {
     const ua = UA.USER_AGENT;
-    await birthRight(mid, ua)
+    // await birthRight(mid, ua)
     await sign(mid, ua); // 签到
     await randSleep();
 
