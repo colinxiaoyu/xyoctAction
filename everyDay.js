@@ -70,11 +70,21 @@ const jifenyuUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type:
 // 
 const chouUrl = (mid, ua) => `curl -H 'Host: www.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://www.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://www.xyoct.com/choujiang0528/index.html?encryptData=__&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=ChouJiang&memberID=${mid}" --compressed 'https://www.xyoct.com/choujiang0528/webserver/AjaxApi.aspx'`;// 积分抽奖
 const chouUrl2 = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/hqczp622/index.html?encryptData=___&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=ChouJiang&memberID=${mid}" --compressed 'https://qch.xyoct.com/hqczp622/webserver/AjaxApi.aspx'`;// 大转盘抽奖
-const birthRightUrl = (mid) => `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=ShengRiTeQuan&memberid=${mid}`// 生日权益
 
 const choujiang618Url = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/189/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://qch.xyoct.com/MangHe2021Api.aspx?type=ChouJiang&id=${randomNum(1, 16)}&mid=${mid}'`
 
+const birthRightUrl = (mid, ua) => `curl -H 'Host: www.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/179/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=ShengRiTeQuan&memberid=${mid}'`
 
+
+// 签到
+function birthRight (mid, ua) {
+  runExec(birthRightUrl(mid, ua)).then(it => {
+    getCurrentTime()
+    console.log('ID：', mid, '生日签到结果：', it);
+  }).catch(err => {
+    console.log(err);
+  })
+}
 
 // 签到
 function sign (mid, ua) {
@@ -158,6 +168,7 @@ function getIds () {
 async function task () {
   getIds().map(async mid => {
     const ua = UA.USER_AGENT;
+    await birthRight(mid, ua)
     await sign(mid, ua); // 签到
     await randSleep();
 
