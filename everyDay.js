@@ -17,7 +17,7 @@ function runExec (cmdStr) {
 }
 
 // 产生 min - max 之间的随机数
-function randomNum (min = 100189, max = 116133) {
+function randomNum (min = 0, max = 16) {
   let r = Math.random() * (max - min);
   r = Math.floor(r) + min;
   return r
@@ -72,10 +72,9 @@ const chouUrl = (mid, ua) => `curl -H 'Host: www.xyoct.com' -H 'Content-Type: ap
 const chouUrl2 = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/hqczp622/index.html?encryptData=___&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=ChouJiang&memberID=${mid}" --compressed 'https://qch.xyoct.com/hqczp622/webserver/AjaxApi.aspx'`;// 大转盘抽奖
 const birthRightUrl = (mid) => `https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=ShengRiTeQuan&memberid=${mid}`// 生日权益
 
+const choujiang618Url = (mid, ua, id) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/189/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://qch.xyoct.com/MangHe2021Api.aspx?type=ChouJiang&id=${id}&mid=${mid}'`
 
-function getIds () {
-  return [USERCODE1, USERCODE2, USERCODE3, USERCODE4, USERCODE5]
-}
+
 
 // 签到
 function sign (mid, ua) {
@@ -137,8 +136,20 @@ function lianliankan (mid, ua) {
   })
 }
 
+// 9或者 13  是门票
+function choujiang618 (mid, ua) {
+  runExec(choujiang618Url(mid, ua, id = randomNum())).then(it => {
+    getCurrentTime()
+    console.log('ID：', mid, '618 活动抽奖结果：', it);
+  }).catch(err => {
+    console.log(err);
+  })
+}
 
-
+function getIds () {
+  return [USERCODE1, USERCODE2, USERCODE3, USERCODE4, USERCODE5]
+  // return [114133]
+}
 
 
 // 任务
@@ -179,6 +190,8 @@ async function task () {
 
     await lianliankan(mid, ua)
     await randSleep();
+
+    choujiang618(mid, ua)
 
 
   })
