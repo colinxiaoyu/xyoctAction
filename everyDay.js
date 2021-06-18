@@ -140,8 +140,6 @@ function lianliankan (mid, ua) {
 function choujiang618 (mid, ua,) {
   runExec(choujiang618Url(mid, ua)).then(it => {
     getCurrentTime()
-    console.log('盲盒ID：', id);
-
     console.log('ID：', mid, '618 活动抽奖结果：', it);
   }).catch(err => {
     console.log(err);
@@ -151,7 +149,7 @@ function choujiang618 (mid, ua,) {
 //  用户表
 function getIds () {
   return [USERCODE1, USERCODE2, USERCODE3, USERCODE4, USERCODE5]
-  // return [114133]
+  // return [106857, 114133]
 }
 
 
@@ -163,7 +161,7 @@ async function task () {
     await sign(mid, ua); // 签到
     await randSleep();
 
-    await await dazhuanpan(mid, ua); // 大转盘 签到
+    await dazhuanpan(mid, ua); // 大转盘 签到
     await randSleep();
 
     await chou2(mid, ua); // 大转盘抽奖
@@ -197,19 +195,9 @@ async function task () {
 
     choujiang618(mid, ua)
 
-
   })
 }
 
 task()
 
-
-
-
-
-
-
-
-
-//
 
