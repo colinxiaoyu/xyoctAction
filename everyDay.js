@@ -71,10 +71,11 @@ const jifenyuUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type:
 const chouUrl = (mid, ua) => `curl -H 'Host: www.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://www.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://www.xyoct.com/choujiang0528/index.html?encryptData=__&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=ChouJiang&memberID=${mid}" --compressed 'https://www.xyoct.com/choujiang0528/webserver/AjaxApi.aspx'`;// 积分抽奖
 const chouUrl2 = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/hqczp622/index.html?encryptData=___&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=ChouJiang&memberID=${mid}" --compressed 'https://qch.xyoct.com/hqczp622/webserver/AjaxApi.aspx'`;// 大转盘抽奖
 
-const choujiang618Url = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/189/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://qch.xyoct.com/MangHe2021Api.aspx?type=ChouJiang&id=${randomNum(1, 16)}&mid=${mid}'`
+const choujiang618Url = (mid, ua, id) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/189/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://qch.xyoct.com/MangHe2021Api.aspx?type=ChouJiang&id=${id}&mid=${mid}'`
 
 const birthRightUrl = (mid, ua) => `curl -H 'Host: www.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/179/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=ShengRiTeQuan&memberid=${mid}'`
 
+const getMangheUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/191/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://qch.xyoct.com/MangHe2021Api.aspx?type=HuoQuMangHe&mid=${mid}'`
 
 // 签到
 function birthRight (mid, ua) {
@@ -146,9 +147,30 @@ function lianliankan (mid, ua) {
   })
 }
 
+function getManghe (mid, ua) {
+  runExec(getMangheUrl(mid, ua)).then(it => {
+    getCurrentTime()
+    console.log('ID：', mid, '盲盒已用的IDList', JSON.parse(it));
+    const { List } = JSON.parse(it);
+    const allList = [];
+    Array.from({ length: 16 }).map((item, index) => {
+      if (List.some((a, j) => (index + '') === a.BoxNo)) {
+
+      } else {
+        allList.push(index)
+      }
+    });
+
+    const firstId = allList[0];
+    choujiang618(mid, ua, firstId)
+  }).catch(err => {
+    console.log(err);
+  })
+}
+
 // 9或者 13  是门票
-function choujiang618 (mid, ua,) {
-  runExec(choujiang618Url(mid, ua)).then(it => {
+function choujiang618 (mid, ua, id) {
+  runExec(choujiang618Url(mid, ua, id)).then(it => {
     getCurrentTime()
     console.log('ID：', mid, '618 活动抽奖结果：', it);
   }).catch(err => {
@@ -159,7 +181,8 @@ function choujiang618 (mid, ua,) {
 //  用户表
 function getIds () {
   return [USERCODE1, USERCODE2, USERCODE3, USERCODE4, USERCODE5]
-  // return [106857, 114133]
+  // return [106857, 114133,104082]
+  // return [104082]
 }
 
 
@@ -168,7 +191,7 @@ function getIds () {
 async function task () {
   getIds().map(async mid => {
     const ua = UA.USER_AGENT;
-    // await birthRight(mid, ua)
+    await birthRight(mid, ua)
     await sign(mid, ua); // 签到
     await randSleep();
 
@@ -204,8 +227,7 @@ async function task () {
     await lianliankan(mid, ua)
     await randSleep();
 
-    choujiang618(mid, ua)
-
+    await getManghe(mid, ua)
   })
 }
 
