@@ -150,7 +150,7 @@ function lianliankan (mid, ua) {
 function getManghe (mid, ua) {
   runExec(getMangheUrl(mid, ua)).then(it => {
     getCurrentTime()
-    console.log('ID：', mid, '盲盒已用的IDList', JSON.parse(it));
+    // console.log('ID：', mid, '盲盒已用的IDList', JSON.parse(it));
     const { List } = JSON.parse(it);
     const allList = [];
     Array.from({ length: 16 }).map((item, index) => {
@@ -172,7 +172,7 @@ function getManghe (mid, ua) {
 function choujiang618 (mid, ua, id) {
   runExec(choujiang618Url(mid, ua, id)).then(it => {
     getCurrentTime()
-    console.log('ID：', mid, '618 活动抽奖结果：', it);
+    console.log('抽奖id：', id, '618 活动抽奖结果：', it);
   }).catch(err => {
     console.log(err);
   })
@@ -191,7 +191,7 @@ function getIds () {
 async function task () {
   getIds().map(async mid => {
     const ua = UA.USER_AGENT;
-    await birthRight(mid, ua)
+    // await birthRight(mid, ua)
     await sign(mid, ua); // 签到
     await randSleep();
 
