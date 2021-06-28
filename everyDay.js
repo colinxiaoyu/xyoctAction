@@ -227,7 +227,7 @@ async function task () {
     await lianliankan(mid, ua)
     await randSleep();
 
-    // await getManghe(mid, ua)
+    await getManghe(mid, ua)
   })
 }
 
