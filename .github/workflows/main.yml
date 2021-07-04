@@ -26,6 +26,8 @@ jobs:
         USERCODE3: ${{ secrets.USERCODE3 }}
         USERCODE4: ${{ secrets.USERCODE4 }}
         USERCODE5: ${{ secrets.USERCODE5 }}
+        USERCODE6: ${{ secrets.USERCODE6 }}
+
       run: |
         npm install
         node everyDay.js

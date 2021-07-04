@@ -1,14 +1,14 @@
 // https://custom.luyuan.cn/custom/wechat/usercenter.html?code=061x8AFa1WFvnA0vsIGa102mSd3x8AFl&state=STATE&usercode=20210122093525742EVYB54Y
 // 每天签到
 function dd (str) {
-	let url = `curl 'https://oapi.dingtalk.com/robot/send?access_token=75d5d35ec52975b87baf3abf889fd0c83d7e20fb1bc1c2e118ee0fa7face8163' \
+  let url = `curl 'https://oapi.dingtalk.com/robot/send?access_token=75d5d35ec52975b87baf3abf889fd0c83d7e20fb1bc1c2e118ee0fa7face8163' \
    -H 'Content-Type: application/json' \
    -d '{"msgtype": "text","text": {"content": "测试:${str}"}}'`;
-	runExec(url).then((std) => {
-		console.log(std);
-	}).catch(err => {
-		console.log(err);
-	})
+  runExec(url).then((std) => {
+    console.log(std);
+  }).catch(err => {
+    console.log(err);
+  })
 }
 
 let qdArr = [
@@ -79,11 +79,11 @@ function xx (arr) {
     runExec(url(item)).then(data => {
       const a = JSON.parse(data);
 
-        const integral = a['userprofile']['integral'];
-        const cellphone = a['userprofile']['cellphone'];
-        if(integral>10000){
-          dd(`${cellphone}的积分为: ${integral} ,快去换东西去吧`);
-        }
+      const integral = a['userprofile']['integral'];
+      const cellphone = a['userprofile']['cellphone'];
+      if (integral > 10000) {
+        dd(`${cellphone}的积分为: ${integral} ,快去换东西去吧`);
+      }
     }).catch(err => {
       console.log(err);
     })
@@ -229,25 +229,51 @@ async function ll (arrr) {
   });
 }
 
+// dd('123123')
+// const ab = async () => {
+//   // 每天签到
+//   qd(qdArr);
+//   await sleep(rand(4, 8) * 1000);
+//   // 先发布内容
+//   fbxx(fb);
+//   await sleep(rand(4, 8) * 1000);
+//   // 内容评论点赞
+//   ll(cly.jscly.js);
+//   await sleep(rand(4, 8) * 1000);
+//   // 社区内容点赞评论等
+//   sh();
+//   await sleep(rand(4, 8) * 1000);
+//   // 最后查看信息
+//   xx(uArr);
+// }
 
-const ab = async () => {
-  // 每天签到
-  qd(qdArr);
-  await sleep(rand(4, 8) * 1000);
-  // 先发布内容
-  fbxx(fb);
-  await sleep(rand(4, 8) * 1000);
-  // 内容评论点赞
-  ll(cly.jscly.js);
-  await sleep(rand(4, 8) * 1000);
-  // 社区内容点赞评论等
-  sh();
-  await sleep(rand(4, 8) * 1000);
-  // 最后查看信息
-  xx(uArr);
+
+// ab()
+
+var axios = require('axios');
+
+function ddBotNotify(text, desp) {
+
+  let ddd = {
+    "msgtype": "markdown",
+    "markdown": {
+      "title": '线上 App 崩溃了',
+      "text": `# 测试`
+    }
+  };
+  let DD_BOT_TOKEN = '75d5d35ec52975b87baf3abf889fd0c83d7e20fb1bc1c2e118ee0fa7face8163';
+
+  axios({
+    method: 'post',
+    url: `https://oapi.dingtalk.com/robot/send?access_token=${DD_BOT_TOKEN}`,
+    data: ddd
+  }).then(function(response) {
+    console.log(response.data);
+  });
+
+  
 }
 
-
-ab()
+ddBotNotify()
 
 
