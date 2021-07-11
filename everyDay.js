@@ -57,26 +57,26 @@ const USERCODE2 = process.env.USERCODE2;
 const USERCODE3 = process.env.USERCODE3;
 const USERCODE4 = process.env.USERCODE4;
 const USERCODE5 = process.env.USERCODE5; //114133  副作用号
-const USERCODE6 = process.env.USERCODE6; //114133  副作用号
+const USERCODE6 = process.env.USERCODE6;
+const USERCODE7 = process.env.USERCODE7; //114133  副作用号
 
 // 签到
-const signUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'accept: */*' -H 'content-type: application/json' -H 'user-agent: ${ua}' -H 'referer: https://servicewechat.com/wxc1f07ce8c049095b/189/page-frame.html' -H 'accept-language: zh-cn' --compressed 'https://qch.xyoct.com/XiaoChengXuApi.aspx?type=QianDao&memberid=${mid}'`
+const signUrl = (mid, ua) => `curl -H 'Host: www.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/179/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=QianDao&memberid=${mid}'`
 // 大转盘签到
-const dazhuanpanUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/179/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://qch.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=HuoDongJiFen&memberid=${mid}&eventid=6&score=5'`
+const dazhuanpanUrl = (mid, ua) => `curl -H 'Host: www.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/179/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=HuoDongJiFen&memberid=${mid}&eventid=6&score=5'`
 // 连连看 抽奖
 const lianliankanUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/llk608/index.html?encryptData=_ __&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=ChouJiang&memberID=${mid}" --compressed 'https://qch.xyoct.com/llk608/webserver/AjaxApi.aspx'`
 // 积分雨活动
 const jifenyuUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/jjb604/index.html?encryptData=_&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=TiJiaoChengJi&memberID=${mid}&Score=30" --compressed 'https://qch.xyoct.com/jjb604/webserver/AjaxApi.aspx'`
 
 // 
-const chouUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://www.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/choujiang0528/index.html?encryptData=__&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=ChouJiang&memberID=${mid}" --compressed 'https://qch.xyoct.com/choujiang0528/webserver/AjaxApi.aspx'`;// 积分抽奖
+const chouUrl = (mid, ua) => `curl -H 'Host: www.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://www.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://www.xyoct.com/choujiang0528/index.html?encryptData=__&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=ChouJiang&memberID=${mid}" --compressed 'https://www.xyoct.com/choujiang0528/webserver/AjaxApi.aspx'`;// 积分抽奖
 const chouUrl2 = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/hqczp622/index.html?encryptData=___&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=ChouJiang&memberID=${mid}" --compressed 'https://qch.xyoct.com/hqczp622/webserver/AjaxApi.aspx'`;// 大转盘抽奖
 
 const choujiang618Url = (mid, ua, id) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/189/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://qch.xyoct.com/MangHe2021Api.aspx?type=ChouJiang&id=${id}&mid=${mid}'`
 
-const birthRightUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/179/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://qch.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=ShengRiTeQuan&memberid=${mid}'`
+const birthRightUrl = (mid, ua) => `curl -H 'Host: www.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/179/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://www.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=ShengRiTeQuan&memberid=${mid}'`
 
-const getMangheUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/191/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://qch.xyoct.com/MangHe2021Api.aspx?type=HuoQuMangHe&mid=${mid}'`
 
 // 签到
 function birthRight (mid, ua) {
@@ -148,27 +148,6 @@ function lianliankan (mid, ua) {
   })
 }
 
-function getManghe (mid, ua) {
-  runExec(getMangheUrl(mid, ua)).then(it => {
-    getCurrentTime()
-    // console.log('ID：', mid, '盲盒已用的IDList', JSON.parse(it));
-    const { List } = JSON.parse(it);
-    const allList = [];
-    Array.from({ length: 16 }).map((item, index) => {
-      if (List.some((a, j) => (index + '') === a.BoxNo)) {
-
-      } else {
-        allList.push(index)
-      }
-    });
-
-    const firstId = allList[0];
-    choujiang618(mid, ua, firstId)
-  }).catch(err => {
-    console.log(err);
-  })
-}
-
 // 9或者 13  是门票
 function choujiang618 (mid, ua, id) {
   runExec(choujiang618Url(mid, ua, id)).then(it => {
@@ -181,10 +160,9 @@ function choujiang618 (mid, ua, id) {
 
 //  用户表
 function getIds () {
-  return [USERCODE1, USERCODE2, USERCODE3, USERCODE4, USERCODE5,USERCODE6]
+  return [USERCODE1, USERCODE2, USERCODE3, USERCODE4, USERCODE5, USERCODE6, USERCODE7]
   // return [106857, 114133,104082]
   // return [104082]
-  // 119118
 }
 
 
@@ -229,7 +207,6 @@ async function task () {
     await lianliankan(mid, ua)
     await randSleep();
 
-    await getManghe(mid, ua)
   })
 }
 
