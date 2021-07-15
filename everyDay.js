@@ -163,39 +163,39 @@ async function task () {
     const ua = UA.USER_AGENT;
     // await birthRight(mid, ua)
     await sign(mid, ua); // 签到
-    await randSleep();
+    // await randSleep();
 
-    await dazhuanpan(mid, ua); // 大转盘 签到
-    await randSleep();
+    // await dazhuanpan(mid, ua); // 大转盘 签到
+    // await randSleep();
 
-    await chou2(mid, ua); // 大转盘抽奖
-    await randSleep();
+    // await chou2(mid, ua); // 大转盘抽奖
+    // await randSleep();
 
-    await chou2(mid, ua);
-    await randSleep();
+    // await chou2(mid, ua);
+    // await randSleep();
 
-    await chou2(mid, ua);
-    await randSleep();
+    // await chou2(mid, ua);
+    // await randSleep();
 
-    await chou(mid, ua); // 积分抽奖
-    await randSleep();
+    // await chou(mid, ua); // 积分抽奖
+    // await randSleep();
 
-    await chou(mid, ua);
-    await randSleep();
+    // await chou(mid, ua);
+    // await randSleep();
 
-    await chou(mid, ua);
-    await randSleep();
+    // await chou(mid, ua);
+    // await randSleep();
 
-    await jifenyu(mid, ua) // 积分雨
+    // await jifenyu(mid, ua) // 积分雨
 
-    await lianliankan(mid, ua) // 连连看
-    await randSleep();
+    // await lianliankan(mid, ua) // 连连看
+    // await randSleep();
 
-    await lianliankan(mid, ua)
-    await randSleep();
+    // await lianliankan(mid, ua)
+    // await randSleep();
 
-    await lianliankan(mid, ua)
-    await randSleep();
+    // await lianliankan(mid, ua)
+    // await randSleep();
 
   })
 }
