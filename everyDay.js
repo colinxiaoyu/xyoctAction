@@ -148,16 +148,6 @@ function lianliankan (mid, ua) {
   })
 }
 
-// 9或者 13  是门票
-function choujiang618 (mid, ua, id) {
-  runExec(choujiang618Url(mid, ua, id)).then(it => {
-    getCurrentTime()
-    console.log('抽奖id：', id, '618 活动抽奖结果：', it);
-  }).catch(err => {
-    console.log(err);
-  })
-}
-
 //  用户表
 function getIds () {
   return [USERCODE1, USERCODE2, USERCODE3, USERCODE4, USERCODE5, USERCODE6, USERCODE7]

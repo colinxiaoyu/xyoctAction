@@ -21,4 +21,14 @@ function getManghe (mid, ua) {
   })
 }
 
+// 9或者 13  是门票
+function choujiang618 (mid, ua, id) {
+  runExec(choujiang618Url(mid, ua, id)).then(it => {
+    getCurrentTime()
+    console.log('抽奖id：', id, '618 活动抽奖结果：', it);
+  }).catch(err => {
+    console.log(err);
+  })
+}
+
     // await getManghe(mid, ua)
