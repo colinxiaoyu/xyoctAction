@@ -61,9 +61,9 @@ const USERCODE6 = process.env.USERCODE6;
 const USERCODE7 = process.env.USERCODE7; //114133  副作用号
 
 // 签到
-const signUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/179/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://qch.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=QianDao&memberid=${mid}'`
+const signUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'accept: */*' -H 'content-type: application/json' -H 'user-agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E217 MicroMessenger/6.8.0(0x16080000) NetType/WIFI Language/en Branch/Br_trunk MiniProgramEnv/Mac' -H 'referer: https://servicewechat.com/wxc1f07ce8c049095b/201/page-frame.html' -H 'accept-language: zh-cn' --compressed 'https://qch.xyoct.com/XiaoChengXuApi.aspx?type=QianDao&memberid=${mid}'`
 // 大转盘签到
-const dazhuanpanUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'User-Agent: ${ua}' -H 'Referer: https://servicewechat.com/wxc1f07ce8c049095b/179/page-frame.html' -H 'Accept-Language: zh-cn' --compressed 'https://qch.xyoct.com/xiaochengxu/XiaoChengXuApi.aspx?type=HuoDongJiFen&memberid=${mid}&eventid=6&score=5'`
+const dazhuanpanUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'accept: */*' -H 'content-type: application/json' -H 'user-agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E217 MicroMessenger/6.8.0(0x16080000) NetType/WIFI Language/en Branch/Br_trunk MiniProgramEnv/Mac' -H 'referer: https://servicewechat.com/wxc1f07ce8c049095b/191/page-frame.html' -H 'accept-language: zh-cn' --compressed 'https://qch.xyoct.com/XiaoChengXuApi.aspx?type=HuoDongJiFen&memberid=${mid}&eventid=6&score=5'`
 // 连连看 抽奖
 const lianliankanUrl = (mid, ua) => `curl -H 'Host: qch.xyoct.com' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Origin: https://qch.xyoct.com' -H 'Accept-Language: zh-cn' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'User-Agent: ${ua}' -H 'Referer: https://qch.xyoct.com/llk608/index.html?encryptData=_ __&t=${Date.now()}' -H 'X-Requested-With: XMLHttpRequest' --data-binary "Type=ChouJiang&memberID=${mid}" --compressed 'https://qch.xyoct.com/llk608/webserver/AjaxApi.aspx'`
 // 积分雨活动
@@ -163,39 +163,39 @@ async function task () {
     const ua = UA.USER_AGENT;
     // await birthRight(mid, ua)
     await sign(mid, ua); // 签到
-    // await randSleep();
+    await randSleep();
 
-    // await dazhuanpan(mid, ua); // 大转盘 签到
-    // await randSleep();
+    await dazhuanpan(mid, ua); // 大转盘 签到
+    await randSleep();
 
-    // await chou2(mid, ua); // 大转盘抽奖
-    // await randSleep();
+    await chou2(mid, ua); // 大转盘抽奖
+    await randSleep();
 
-    // await chou2(mid, ua);
-    // await randSleep();
+    await chou2(mid, ua);
+    await randSleep();
 
-    // await chou2(mid, ua);
-    // await randSleep();
+    await chou2(mid, ua);
+    await randSleep();
 
-    // await chou(mid, ua); // 积分抽奖
-    // await randSleep();
+    await chou(mid, ua); // 积分抽奖
+    await randSleep();
 
-    // await chou(mid, ua);
-    // await randSleep();
+    await chou(mid, ua);
+    await randSleep();
 
-    // await chou(mid, ua);
-    // await randSleep();
+    await chou(mid, ua);
+    await randSleep();
 
-    // await jifenyu(mid, ua) // 积分雨
+    await jifenyu(mid, ua) // 积分雨
 
-    // await lianliankan(mid, ua) // 连连看
-    // await randSleep();
+    await lianliankan(mid, ua) // 连连看
+    await randSleep();
 
-    // await lianliankan(mid, ua)
-    // await randSleep();
+    await lianliankan(mid, ua)
+    await randSleep();
 
-    // await lianliankan(mid, ua)
-    // await randSleep();
+    await lianliankan(mid, ua)
+    await randSleep();
 
   })
 }
